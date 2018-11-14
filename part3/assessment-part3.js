@@ -55,11 +55,21 @@ var foo;
 
 // CODE HERE...
 
+// function promiseMe() {
+// 	return new Promise();
+// 	$q = function() {
+// 		foo = 'bar';
+// 	};
+// 	return setTimeout($q(), 20);
+// }
+
 function promiseMe($q) {
-	$q = function() {
+	let deferred = $q.defer();
+	setTimeout(function() {
 		foo = 'bar';
-	};
-	return setTimeout($q(), 20);
+		deferred.resolve(foo);
+	}, 20);
+	return deferred.promise;
 }
 
 // *************
