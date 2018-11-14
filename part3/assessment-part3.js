@@ -14,7 +14,10 @@
 
 // CODE HERE...
 
-
+function callBinding(magicAnimals, updateAnimal, id) {
+	let animal = magicAnimals.filter((elem) => elem.id === id)[0];
+	return updateAnimal.call(animal, 'Trogdor');
+}
 
 // *************
 // * PROBLEM 2 *
@@ -29,7 +32,10 @@
 
 // CODE HERE...
 
-
+function applyBinding(magicAnimals, updateAnimal, id) {
+	let animal = magicAnimals.filter((elem) => elem.id === id)[0];
+	return updateAnimal.apply(animal, ['being majestic', 'eating rainbows']);
+}
 
 // *************
 // * PROBLEM 3 *
@@ -49,7 +55,13 @@ var foo;
 
 // CODE HERE...
 
-
+function promiseMe($q) {
+	$q.then((result) => {
+		setTimeout(function() {
+			foo = bar;
+		}, 20);
+	});
+}
 
 // *************
 // * PROBLEM 4 *
