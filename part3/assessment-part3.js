@@ -56,11 +56,10 @@ var foo;
 // CODE HERE...
 
 function promiseMe($q) {
-	$q.then((result) => {
-		setTimeout(function() {
-			foo = bar;
-		}, 20);
-	});
+	$q = function() {
+		foo = 'bar';
+	};
+	return setTimeout($q(), 20);
 }
 
 // *************
@@ -76,3 +75,12 @@ function promiseMe($q) {
 // and then resolve the array as you complete your promise.
 
 // CODE HERE...
+function emailList($q, $http) {
+	return $http({
+		method: 'GET',
+		url: '/api/users'
+	}).then((result) => {
+		let emails = result.data.map((elem) => elem.email);
+		return emails;
+	});
+}
