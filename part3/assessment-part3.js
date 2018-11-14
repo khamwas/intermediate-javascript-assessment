@@ -86,11 +86,13 @@ function promiseMe($q) {
 
 // CODE HERE...
 function emailList($q, $http) {
+	let defer = $q.defer();
 	return $http({
 		method: 'GET',
 		url: '/api/users'
 	}).then((result) => {
 		let emails = result.data.map((elem) => elem.email);
-		return emails;
+		defer.resolve(emails);
+		return defer.promise;
 	});
 }
